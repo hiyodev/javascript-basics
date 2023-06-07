@@ -33,10 +33,13 @@ function equalityOperators() {
 // prettier-ignore
 function logicalOperators() {
   console.log(`4. The "||" operator returns the first truthy value:
-  1. (true || false); => ${true || false}
-  2. (5 || false);    => ${5 || false}
-  3. (100 || 999);    => ${100 || 999}
-  4. ("A" || 1);      => ${"A" || 1}
+  1. (true || false);  => ${true || false}
+  2. (5 || false);     => ${5 || false}
+  3. (100 || 999);     => ${100 || 999}
+  4. ("A" || 2);       => ${"A" || 2}
+  5. (null || 2);      => ${null || 2}
+  6. (NaN || 2);       => ${NaN || 2}
+  7. (undefined || 2); => ${undefined || 2}
   `);
 
   console.log(`5. The "&&" operator returns either first falsy value OR the last truthy value:
@@ -48,17 +51,42 @@ function logicalOperators() {
   `);
 
   console.log(`6. The "!" and "!!" operator works as expected and the first "!" operator will convert the value to a "boolean" type first then invert it:
-  1. (!"Hello");  => ${!"Hello"} -> Boolean("Hello") = true, this is then inverted once. 
-  2. (!!"Hello"); => ${!!"Hello"} -> Boolean("Hello") = true, it's then inverted to "false" and back to "true".
+  1. (!"Hello");   => ${!"Hello"} -> Boolean("Hello") = true, this is then inverted once. 
+  2. (!!"Hello");  => ${!!"Hello"} -> Boolean("Hello") = true, it's then inverted to "false" and back to "true".
+  3. (!null);      => ${!null}
+  4. (!undefined); => ${!undefined}
+  5. (!NaN)        => ${!NaN}
+  `);
+}
+
+// prettier-ignore
+function nullishCoalescingOperator() {
+  console.log(`7. The "??" operator returns the first argument if it's not "null" or "undefined", otherwise it returns the second argument:
+  1. (1 ?? 2);            => ${1 ?? 2}
+  2. (0 ?? 2);            => ${0 ?? 2}
+  3. (null ?? 2);         => ${null ?? 2}
+  4. (undefined ?? 2);    => ${undefined ?? 2}
+  5. (NaN ?? 2);          => ${NaN ?? 2} -> "NaN" is not "null" or "undefined", therefore it returns the first argument, "NaN".
+  6. (null ?? null ?? 5); => ${null ?? null ?? 5}
   `);
 }
 
 function summaryText() {
   console.log(`Summary:
+  - Equality "==" operator will convert operands to "number" type unless it's "null" or "undefined". "null" and "undefined" are only equal to each other and nothing else.
+  - Strictly Equality "===" operator will not convert operands and will compare strictly based on type and value. If there is a type mismatch, it is always false. 
+    > Other comparison operators like ">", "<", ">=", "=<" will also convert operands to "number" type just like "==" operator has no special treatment for "null" or "undefined" values.
 
+  - Or "||" operator will always return the first truthy value. "null", "NaN", "undefined" are not truthy values. 
+  - And "&&" operator will return either the first falsy value or the last truthy value. 
+    > These two operators will convert operands to "boolean" type but will always return their original value. 
+
+  - Nullish Coalescing "??" operator is similar to the Or "||" operator except that it returns the first "defined" value rather than the first "truthy" value.
+    > For example: (0 ?? 1) returns 0 whereas (0 || 1) returns 1. "0" is a defined but falsy value. 
   `);
 }
 
 equalityOperators();
 logicalOperators();
+nullishCoalescingOperator();
 summaryText();
