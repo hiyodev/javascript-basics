@@ -1,7 +1,7 @@
 "use strict";
 
 // prettier-ignore
-function equalityOperator() {
+function equalityOperators() {
   console.log(`1. The "==" operator will convert all operand values except "null" and "undefined" to "number" type first before testing the comparison:
   1. (5 == "5");          => ${5 == "5"}
   2. (0 == "");           => ${0 == ""} -> true because Number("") = 0. 
@@ -30,4 +30,35 @@ function equalityOperator() {
   `);
 }
 
-equalityOperator();
+// prettier-ignore
+function logicalOperators() {
+  console.log(`4. The "||" operator returns the first truthy value:
+  1. (true || false); => ${true || false}
+  2. (5 || false);    => ${5 || false}
+  3. (100 || 999);    => ${100 || 999}
+  4. ("A" || 1);      => ${"A" || 1}
+  `);
+
+  console.log(`5. The "&&" operator returns either first falsy value OR the last truthy value:
+  1. (999 && null);                  => ${999 && null}
+  2. (null && true);                 => ${null && true}
+  3. (5 && 6 && 0 && 100 && false);  => ${5 && 6 && 0 && 100} -> "0" is the first falsy value. 
+  4. (5 && 6 && false && 100 && 0);  => ${5 && 6 && false && 100 && 0} -> False not because it's returning the converted type but because the original type itself is already a "boolean" type value of "false".
+  4. ("A" && "ABC" && 999);          => ${"A" && "ABC" && 999} -> "999" is converted to a "boolean" type which is "true" before the evaluation and after evaluation, the original value of 999 is returned as it's the last truthy value.
+  `);
+
+  console.log(`6. The "!" and "!!" operator works as expected and the first "!" operator will convert the value to a "boolean" type first then invert it:
+  1. (!"Hello");  => ${!"Hello"} -> Boolean("Hello") = true, this is then inverted once. 
+  2. (!!"Hello"); => ${!!"Hello"} -> Boolean("Hello") = true, it's then inverted to "false" and back to "true".
+  `);
+}
+
+function summaryText() {
+  console.log(`Summary:
+
+  `);
+}
+
+equalityOperators();
+logicalOperators();
+summaryText();
