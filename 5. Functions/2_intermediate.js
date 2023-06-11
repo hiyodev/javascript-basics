@@ -16,4 +16,3 @@ const functionWithAnonymousFunction = function () {
 
 functionExpression();
 functionWithFunctionExpression(true, functionExpression);
-functionWithAnonymousFunction();
